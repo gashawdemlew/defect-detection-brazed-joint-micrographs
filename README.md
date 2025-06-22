@@ -61,7 +61,7 @@ This project provides a Python-based tool that uses a trained **YOLOv11** model 
    ```
    .
    ├── defect_analyzer.py
-   ├── model_training/
+   ├── model/
    │   ├── Defect-detection using segmentation_approch.ipynb
    │   └── defect_detector_model.pt
    ├── unprocessed_images/      <-- Input images go here
