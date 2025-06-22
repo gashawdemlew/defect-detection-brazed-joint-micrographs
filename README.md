@@ -29,7 +29,9 @@ Saves output images with overlaid defect contours and class labels.
 Includes Dockerfile and dependencies for streamlined deployment.
 
 🛠️ Setup Guide
+
 ✅ Prerequisites
+
 Python 3.12.11+
 
 pip (Python package installer)
@@ -37,6 +39,7 @@ pip (Python package installer)
 Docker (optional, for containerized use)
 
 📦 Installation
+
 Clone the repository:
 
 bash
