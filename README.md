@@ -1,4 +1,5 @@
 ✨ Defect Detection and Analysis for Brazed Joint Micrographs
+
 This project provides a Python-based tool that uses a trained YOLOv11 model to detect and analyze defects in brazed joint micrographs. It supports batch processing, computes defect metrics, generates visual and CSV reports, and offers containerized deployment via Docker.
 
 🚀 Features
