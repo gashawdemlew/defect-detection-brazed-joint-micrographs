@@ -3,6 +3,7 @@
 This project provides a Python-based tool that uses a trained YOLOv11 model to detect and analyze defects in brazed joint micrographs. It supports batch processing, computes defect metrics, generates visual and CSV reports, and offers containerized deployment via Docker.
 
 🚀 Features
+
 🔍 YOLOv11 Integration
 Leverages a pre-trained YOLOv11 model for accurate defect classification and segmentation.
 
