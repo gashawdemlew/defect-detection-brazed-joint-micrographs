@@ -42,7 +42,7 @@ TARGET_IMAGE_DIM = (640, 640) # Width, Height
 
 # --- MODEL PREDICTION CONFIDENCE THRESHOLD ---
 # Only predictions with a confidence score above this threshold will be considered.
-CONFIDENCE_THRESHOLD = 0.20 # 25% confidence level
+CONFIDENCE_THRESHOLD = 0.25 # 25% confidence level
 
 def analyze_defects(model, image_path, pixels_per_micron):
     """
@@ -178,11 +178,26 @@ def update_summary_csv(new_defects_df):
     """
     # Load existing data if the file exists, otherwise start with an empty DataFrame
     if os.path.exists(SUMMARY_CSV_PATH) and os.path.getsize(SUMMARY_CSV_PATH) > 0:
-        # Read the existing CSV, skipping lines that start with '#' (our header)
-        existing_df = pd.read_csv(SUMMARY_CSV_PATH, comment='#')
-        all_data_df = pd.concat([existing_df, new_defects_df], ignore_index=True)
-        # Remove duplicates based on 'Image ID' and 'Defect Area (µm²)' if re-processing the same image multiple times
-        all_data_df.drop_duplicates(inplace=True) 
+        try:
+            # Read the existing CSV, skipping lines that start with '#' (our header)
+            existing_df = pd.read_csv(SUMMARY_CSV_PATH, comment='#', encoding='utf-8')
+            all_data_df = pd.concat([existing_df, new_defects_df], ignore_index=True)
+            # Remove duplicates based on 'Image ID' and 'Defect Area (µm²)' if re-processing the same image multiple times
+            all_data_df.drop_duplicates(inplace=True) 
+        except pd.errors.EmptyDataError:
+            # Handle case where file exists but is empty after comments
+            all_data_df = new_defects_df
+        except UnicodeDecodeError as e:
+            print(f"UnicodeDecodeError when reading {SUMMARY_CSV_PATH}: {e}")
+            print("Attempting to read with 'latin1' encoding as a fallback.")
+            try:
+                existing_df = pd.read_csv(SUMMARY_CSV_PATH, comment='#', encoding='latin1')
+                all_data_df = pd.concat([existing_df, new_defects_df], ignore_index=True)
+                all_data_df.drop_duplicates(inplace=True)
+            except Exception as fallback_e:
+                print(f"Fallback to 'latin1' also failed: {fallback_e}")
+                print("Proceeding with only newly processed data for the summary report.")
+                all_data_df = new_defects_df
     else:
         all_data_df = new_defects_df
 
@@ -211,10 +226,10 @@ def update_summary_csv(new_defects_df):
     report_header += "#\n"
 
     # Write the header, then append the full data
-    with open(SUMMARY_CSV_PATH, 'w') as f:
+    with open(SUMMARY_CSV_PATH, 'w', encoding='utf-8') as f: # Explicitly set encoding
         f.write(report_header)
     
-    all_data_df.to_csv(SUMMARY_CSV_PATH, mode='a', index=False)
+    all_data_df.to_csv(SUMMARY_CSV_PATH, mode='a', index=False, encoding='utf-8') # Explicitly set encoding
     
     print(f"Aggregate report updated and saved to: {SUMMARY_CSV_PATH}")
     print("\nSummary Statistics (Current):")
@@ -251,7 +266,6 @@ def main():
         individual_csv_path = os.path.join(OUTPUT_FOLDER_PATH, f"{base_filename}_defects.csv")
 
         # Skip already processed images
-        # The logic was slightly adjusted to ensure consistency with the new preprocessing step.
         if os.path.exists(output_image_path) and os.path.exists(individual_csv_path):
             print(f"Skipping {os.path.basename(image_path)}: Already processed.")
             continue
@@ -274,9 +288,9 @@ def main():
             individual_header += f"# Minimum Prediction Confidence Threshold: {CONFIDENCE_THRESHOLD * 100:.0f}%\n"
             individual_header += "#\n"
 
-            with open(individual_csv_path, 'w') as f:
+            with open(individual_csv_path, 'w', encoding='utf-8') as f: # Explicitly set encoding
                 f.write(individual_header)
-            individual_df.to_csv(individual_csv_path, mode='a', index=False)
+            individual_df.to_csv(individual_csv_path, mode='a', index=False, encoding='utf-8') # Explicitly set encoding
             print(f"  -> Individual defect report saved to: {individual_csv_path}")
 
         # Save the overlay image to the processed_images/ folder 
