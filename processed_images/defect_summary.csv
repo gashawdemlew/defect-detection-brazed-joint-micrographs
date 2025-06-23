@@ -1,18 +1,20 @@
 # Defect Summary Report
-# Last Updated: 2025-06-22 22:57:10
-# Total Defects Found Across All Processed Images: 10
+# Last Updated: 2025-06-24 00:24:18
+# Minimum Prediction Confidence Threshold: 10%
+# Total Defects Found Across All Processed Images: 11
 # --- Totals per Classification (All Images) ---
-# incomplete_penetration: Count = 4, Total Area = 33772.00 µm²
-# porosity: Count = 6, Total Area = 7608.00 µm²
+# incomplete_penetration: Count = 4, Total Area = 59118.95 µm²
+# porosity: Count = 7, Total Area = 8134.61 µm²
 #
-Image ID,Defect Area (µm²),Aspect Ratio (AR),Defect Classification
-mechanical_defect_image.png,27080.0,2.24,incomplete_penetration
-mechanical_defect_image.png,2744.0,2.36,porosity
-mechanical_defect_image.png,1068.0,1.49,porosity
-mechanical_defect_image.png,1120.0,1.4,porosity
-mechanical_defect_image.png,608.0,1.68,porosity
-mechanical_defect_image.png,896.0,1.42,porosity
-defect_mechanical_image.png,2868.0,36.82,incomplete_penetration
-defect_mechanical_image.png,956.0,5.15,incomplete_penetration
-defect_mechanical_image.png,2868.0,10.51,incomplete_penetration
-defect_mechanical_image.png,1172.0,2.38,porosity
+Image ID,Defect Area (µm²),Aspect Ratio (AR),Distance from Inner Circle (µm),Defect Classification,Confidence
+mechanical_defect_image.png,26966.69,2.13,-1.0,incomplete_penetration,0.9462
+mechanical_defect_image.png,1560.87,1.58,-1.0,porosity,0.9329
+mechanical_defect_image.png,2733.51,2.59,-1.0,porosity,0.8964
+mechanical_defect_image.png,1172.64,1.25,-1.0,porosity,0.8447
+mechanical_defect_image.png,855.71,1.52,-1.0,porosity,0.6644
+mechanical_defect_image.png,867.59,1.51,-1.0,porosity,0.6476
+mechanical_defect_image.png,182.23,1.18,-1.0,porosity,0.3283
+defect_mechanical_image.png,16546.62,5.22,19.75,incomplete_penetration,0.8671
+defect_mechanical_image.png,6447.68,6.67,28.79,incomplete_penetration,0.531
+defect_mechanical_image.png,9157.96,15.4,198.07,incomplete_penetration,0.4834
+defect_mechanical_image.png,762.06,2.39,0.35,porosity,0.3092

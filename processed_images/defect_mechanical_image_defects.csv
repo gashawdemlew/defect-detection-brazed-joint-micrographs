@@ -1,5 +1,9 @@
-Image ID,Defect Area (µm²),Aspect Ratio (AR),Defect Classification
-defect_mechanical_image.png,2868.0,36.82,incomplete_penetration
-defect_mechanical_image.png,956.0,5.15,incomplete_penetration
-defect_mechanical_image.png,2868.0,10.51,incomplete_penetration
-defect_mechanical_image.png,1172.0,2.38,porosity
+# Defect Report for Image: defect_mechanical_image.png
+# Total Defects Found in this Image: 4
+# Minimum Prediction Confidence Threshold: 10%
+#
+Image ID,Defect Area (µm²),Aspect Ratio (AR),Distance from Inner Circle (µm),Defect Classification,Confidence
+defect_mechanical_image.png,16546.62,5.22,19.75,incomplete_penetration,0.8671
+defect_mechanical_image.png,6447.68,6.67,28.79,incomplete_penetration,0.531
+defect_mechanical_image.png,9157.96,15.4,198.07,incomplete_penetration,0.4834
+defect_mechanical_image.png,762.06,2.39,0.35,porosity,0.3092
