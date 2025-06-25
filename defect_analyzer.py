@@ -9,7 +9,7 @@ from ultralytics import YOLO
 
 # 1. MODEL AND PATHS CONFIGURATION
 # Path to your trained YOLO model's weights file.
-MODEL_PATH = 'model/defect_detector_model.pt'
+MODEL_PATH = 'model/best_defect_detector_model_v5.pt'
 
 # Input folder containing micrographs.
 IMAGE_FOLDER_PATH = 'unprocessed_images/'
@@ -42,7 +42,7 @@ TARGET_IMAGE_DIM = (640, 640) # Width, Height
 
 # --- MODEL PREDICTION CONFIDENCE THRESHOLD ---
 # Only predictions with a confidence score above this threshold will be considered.
-CONFIDENCE_THRESHOLD = 0.25 # 25% confidence level
+CONFIDENCE_THRESHOLD = 0.20 # 25% confidence level
 
 def analyze_defects(model, image_path, pixels_per_micron):
     """
