@@ -9,7 +9,7 @@ from ultralytics import YOLO
 
 # 1. MODEL AND PATHS CONFIGURATION
 # Path to your trained YOLO model's weights file.
-MODEL_PATH = 'model/best_defect_detector_model_v5.pt'
+MODEL_PATH = 'model/best_defect_detector_model_v4.pt'
 
 # Input folder containing micrographs.
 IMAGE_FOLDER_PATH = 'unprocessed_images/'
